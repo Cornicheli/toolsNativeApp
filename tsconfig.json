@@ -1,0 +1,22 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules/expo/node_modules",
+    "node_modules/expo/babel.config.js",
+    "node_modules/expo/metro.config.js",
+    "node_modules/expo/jest.config.js"
+  ]
+}
