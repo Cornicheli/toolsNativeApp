@@ -1,21 +1,32 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native';
-import React from 'react';
+import { View, Text, StyleSheet, Pressable, Animated } from 'react-native';
+import React, { useRef } from 'react';
 import { colors } from '@/theme/theme';
 
 export const Animation101Screen = () => {
+    const animatedOpacity = useRef(new Animated.Value(0)).current;
+    const fadeIn = () => {
+        Animated.timing(animatedOpacity, {
+            toValue: 1,
+            duration: 300,
+            useNativeDriver: true,
+        }).start(() => console.log('animation ended'));
+    };
+    const fadeOut = () => {
+        Animated.timing(animatedOpacity, {
+            toValue: 0,
+            duration: 300,
+            useNativeDriver: true,
+        }).start();
+    };
     return (
         <View style={styles.container}>
-            <View style={styles.purpluBox} />
-            <Pressable
-                onPress={() => {
-                    console.log('fade in');
-                }}>
+            <Animated.View
+                style={[styles.purpluBox, { opacity: animatedOpacity }]}
+            />
+            <Pressable onPress={fadeIn}>
                 <Text>Fade In</Text>
             </Pressable>
-            <Pressable
-                onPress={() => {
-                    console.log('fade out');
-                }}>
+            <Pressable onPress={fadeOut}>
                 <Text>Fade Out</Text>
             </Pressable>
         </View>
